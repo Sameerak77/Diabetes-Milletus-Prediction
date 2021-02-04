@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS -->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="{{url_for('static',filename='bootstrap.min.css')}}"
+    />
+    <title>Diabetes Predictor</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="secondary">Diabetes Milletus Prediction</h1>
+      <p>
+        This web based application is based on a Machine Learning Algorithm that
+        predicts <br />
+        a patient's chance of having diabetes or not.
+      </p>
+    </div>
+    <div class="container border border-light rounded pt-5">
+      <div class="row pb-5">
+        <form action="/predict" method="POST">
+          <div class="row mb-3">
+            <div class="col">
+              <label for="preg">Pregnancies</label>
+              <input name="preg" type="text" class="form-control" />
+            </div>
+            <div class="col">
+              <label for="gluc">Glucose</label>
+              <input name="gluc" type="text" class="form-control" />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <label for="bp">Blood Pressure</label>
+              <input name="bp" type="text" class="form-control" />
+            </div>
+            <div class="col">
+              <label for="st">Skin Thickness</label>
+              <input name="st" type="text" class="form-control" />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <label for="ins">Insulin</label>
+              <input name="ins" type="text" class="form-control" />
+            </div>
+            <div class="col">
+              <label for="bmi">Body Mass Index</label>
+              <input name="bmi" type="text" class="form-control" />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <label for="dpf">DiabetesPedigreeFunction</label>
+              <input name="dpf" type="text" class="form-control" />
+            </div>
+            <div class="col">
+              <label for="age">Age</label>
+              <input name="age" type="text" class="form-control" />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">submit</button>
+        </form>
+      </div>
+      {% block content %} {% if values!=None %} {% if values==1 %}
+      <h1>The patient is likely to have diabetes.</h1>
+      {% else %}
+      <h1>The patient is not likely to have diabetes.</h1>
+      {% endif %} {% endif %} {% endblock content %}
+    </div>
+  </body>
+</html>
